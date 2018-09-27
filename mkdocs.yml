@@ -1,0 +1,20 @@
+site_name: 'BOSH Demo'
+theme:
+  name: 'material'
+  palette:
+    primary: 'green'
+    accent: 'green'
+markdown_extensions:
+  - codehilite
+  - admonition
+  - toc:
+      permalink: "#"
+      baselevel: 2
+      separator: "_"
+pages:
+  - Getting Started: index.md
+  - Build BOSH Director: director.md
+  - Create BOSH Release: release.md
+  - Deploy into VirtualBox: deploy.md
+  - Deploy into Openstack: openstack.md
+  - Chaos Engineering: turbulence.md
