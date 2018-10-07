@@ -249,7 +249,9 @@ bosh upload-release https://github.com/shreddedbacon/nginx-boshrelease/releases/
 ```
 ```
 bosh upload-release /tmp/static-site.tgz
-# OR
+```
+OR
+```
 bosh upload-release https://github.com/shreddedbacon/staticsite-boshrelease/releases/download/v1.0.0/staticsite-boshrelease-v1.0.0.tgz
 ```
 And finally deploy it
