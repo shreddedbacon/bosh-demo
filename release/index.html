@@ -1,0 +1,669 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Create BOSH Release - BOSH Demo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#4caf50">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="green" data-md-color-accent="green">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#init_release" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="BOSH Demo" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                BOSH Demo
+              </span>
+              <span class="md-header-nav__topic">
+                Create BOSH Release
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="BOSH Demo" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    BOSH Demo
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../director/" title="Build BOSH Director" class="md-nav__link">
+      Build BOSH Director
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Create BOSH Release
+      </label>
+    
+    <a href="./" title="Create BOSH Release" class="md-nav__link md-nav__link--active">
+      Create BOSH Release
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#init_release" title="Init Release" class="md-nav__link">
+    Init Release
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_sourceblob_files" title="Create Source/Blob Files" class="md-nav__link">
+    Create Source/Blob Files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate_package" title="Generate Package" class="md-nav__link">
+    Generate Package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate_job" title="Generate Job" class="md-nav__link">
+    Generate Job
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create_release" title="Create Release" class="md-nav__link">
+    Create Release
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../deploy/" title="Deploy into VirtualBox" class="md-nav__link">
+      Deploy into VirtualBox
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../openstack/" title="Deploy into Openstack" class="md-nav__link">
+      Deploy into Openstack
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../turbulence/" title="Chaos Engineering" class="md-nav__link">
+      Chaos Engineering
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#init_release" title="Init Release" class="md-nav__link">
+    Init Release
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create_sourceblob_files" title="Create Source/Blob Files" class="md-nav__link">
+    Create Source/Blob Files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate_package" title="Generate Package" class="md-nav__link">
+    Generate Package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate_job" title="Generate Job" class="md-nav__link">
+    Generate Job
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create_release" title="Create Release" class="md-nav__link">
+    Create Release
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Create BOSH Release</h1>
+                
+                <h2 id="init_release">Init Release<a class="headerlink" href="#init_release" title="Permanent link">#</a></h2>
+<p>First we need to create the release using the following command. It will create a directory called <code>staticsite-boshrelease</code> and will set up a few directories and files for us to help get started.</p>
+<div class="codehilite"><pre><span></span>bosh init-release --dir<span class="o">=</span>staticsite-boshrelease
+</pre></div>
+
+
+<p>This will create some directories</p>
+<div class="codehilite"><pre><span></span>config/
+jobs/
+packages/
+src/
+</pre></div>
+
+
+<ul>
+<li>config contains files that describe our release and where our release stores its blobs externally.</li>
+<li>jobs contains all the jobs that this release will have available to it, a job is a way to run a package or packages</li>
+<li>packages contains the packages that will be used in this release, it describes how to build/compile the packages</li>
+<li>src is where you can store sourcecode and files if you don't want to utilise an external blobstore</li>
+</ul>
+<h3 id="create_sourceblob_files">Create Source/Blob Files<a class="headerlink" href="#create_sourceblob_files" title="Permanent link">#</a></h3>
+<p>Now that we have our release skeleton, we need to create the HTML that will deployed in this release, and all the resources we are using in our HTML (css/js).</p>
+<p>First we need to make a directory in the src folder to store our files that we need.</p>
+<div class="codehilite"><pre><span></span>mkdir src/static
+</pre></div>
+
+
+<p>Now we need to get the bootstrap archive that contains the css/js we will be using and put it into the <code>src/static</code> directory too.</p>
+<div class="codehilite"><pre><span></span>wget -O src/static/bootstrap-4.1.3-dist.zip https://github.com/twbs/bootstrap/releases/download/v4.1.3/bootstrap-4.1.3-dist.zip
+</pre></div>
+
+
+<p>And finally, generate the index.html file we will use.</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> &gt; src/static/index.html
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Samuel L Ipsum&lt;/title&gt;
+    &lt;link <span class="nv">rel</span><span class="o">=</span><span class="s2">&quot;stylesheet&quot;</span> <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;/css/bootstrap.min.css&quot;</span>&gt;
+    &lt;script <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;/js/bootstrap.min.js&quot;</span>&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;nav <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;navbar navbar-expand-lg navbar-dark bg-dark&quot;</span>&gt;
+      &lt;button <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span> <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;button&quot;</span> data-toggle<span class="o">=</span><span class="s2">&quot;collapse&quot;</span> data-target<span class="o">=</span><span class="s2">&quot;#navbarSupportedContent&quot;</span> aria-controls<span class="o">=</span><span class="s2">&quot;navbarSupportedContent&quot;</span> aria-expanded<span class="o">=</span><span class="s2">&quot;false&quot;</span> aria-label<span class="o">=</span><span class="s2">&quot;Toggle navigation&quot;</span>&gt;
+        &lt;span <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;navbar-toggler-icon&quot;</span>&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;collapse navbar-collapse&quot;</span> <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;navbarSupportedContent&quot;</span>&gt;
+        &lt;ul <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;navbar-nav mr-auto&quot;</span>&gt;
+          &lt;li <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;nav-item active&quot;</span>&gt;
+            &lt;a <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;nav-link&quot;</span> <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;/&quot;</span>&gt;Home &lt;span <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;sr-only&quot;</span>&gt;<span class="o">(</span>current<span class="o">)</span>&lt;/span&gt;&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+    &lt;div <span class="nv">class</span><span class="o">=</span><span class="s2">&quot;container&quot;</span>&gt;
+      &lt;h1&gt;Samuel L Ipsum&lt;/h1&gt;
+      &lt;!-- start slipsum code --&gt;
+      &lt;h2&gt;Are you ready <span class="k">for</span> the truth?&lt;/h2&gt;
+      Well, the way they make shows is, they make one show. That show<span class="s1">&#39;s called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they&#39;</span>re going to make more shows. Some pilots get picked and become television programs. Some don<span class="s1">&#39;t, become nothing. She starred in one of the ones that became nothing.</span>
+<span class="s1">      &lt;h2&gt;We happy?&lt;/h2&gt;</span>
+<span class="s1">      Now that we know who you are, I know who I am. I&#39;</span>m not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain<span class="s1">&#39;s going to be? He&#39;</span>s the exact opposite of the hero. And most <span class="nb">times</span> they<span class="s1">&#39;re friends, like you and me! I should&#39;</span>ve known way back when... You know why, David? Because of the kids. They called me Mr Glass.
+      &lt;!-- end slipsum code --&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+EOF
+</pre></div>
+
+
+<h2 id="generate_package">Generate Package<a class="headerlink" href="#generate_package" title="Permanent link">#</a></h2>
+<p>Next up we need to create the package that will copy our static site into the right location on the deployed VM.</p>
+<p>First generate the package skeleton for our package that we will call <code>staticsite</code></p>
+<div class="codehilite"><pre><span></span>bosh generate-package staticsite
+</pre></div>
+
+
+<p>Now we have a skeleton directory, it contains 2 files</p>
+<ul>
+<li><code>packages/staticsite/packaging</code></li>
+<li><code>packages/staticsite/spec</code></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<ul>
+<li>Packaging is where we write how to compile or build our software (our static website)</li>
+<li>Spec is where we define things that our static site will need to create the package, files etc..</li>
+</ul>
+</div>
+<p>Lets update the spec file first, it will tell the package what we need to build with.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>BOSH will look in the src directory first for any resources, if they aren't there, it will look in the blobstore.</p>
+</div>
+<p>Earlier we downloaded a zip file, and created an index.html file. We need to tell our spec file these 2 files exist, and where to find them.</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> &gt; packages/staticsite/spec
+---
+name: staticsite
+
+dependencies: <span class="o">[]</span>
+
+files:
+  - static/index.html
+  - static/bootstrap-4.1.3-dist.zip
+EOF
+</pre></div>
+
+
+<p>Great, now we need to tell BOSH how to package these 2 things together.</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> &gt; packages/staticsite/packaging
+<span class="nb">set</span> -e
+
+<span class="nb">echo</span> <span class="s2">&quot;Moving index.html to install target&quot;</span>
+cp -a static/index.html <span class="si">${</span><span class="nv">BOSH_INSTALL_TARGET</span><span class="si">}</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Extract bootsrap resources into target&quot;</span>
+unzip static/bootstrap-4.1.3-dist.zip -d <span class="si">${</span><span class="nv">BOSH_INSTALL_TARGET</span><span class="si">}</span>
+EOF
+</pre></div>
+
+
+<p>Since the bootstrap ZIP file contains our css/js, we need to unzip it into the install target directory to actually be able to use it.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>${BOSH_INSTALL_TARGET}</code> is a location that will be created on the deployed VM. In this case it will reference the final directory of <code>/var/vcap/packages/staticsite/</code></p>
+</div>
+<p>Great, we have a script that tells BOSH how to put all our bits together. Now we need a job that knows what to do with our package.</p>
+<h2 id="generate_job">Generate Job<a class="headerlink" href="#generate_job" title="Permanent link">#</a></h2>
+<p>Now we need to create a job that will tell BOSH how to use this package. Since it is a simple static website, our job will be relatively simple.</p>
+<p>First we need to create the job structure.</p>
+<div class="codehilite"><pre><span></span>bosh generate-job staticsite
+</pre></div>
+
+
+<p>This creates a few files</p>
+<div class="codehilite"><pre><span></span>jobs/staticsite/spec
+jobs/staticsite/monit
+jobs/staticsite/templates/
+</pre></div>
+
+
+<ul>
+<li>spec is a file that contains properties and package requirements for this job</li>
+<li>monit should know how to start/stop any services this job may have</li>
+<li>templates is a place to store templates, like start and stop scripts, drain scripts, etc.</li>
+</ul>
+<p>Now we have the job skeleton, we need to tell it about our package.</p>
+<p>We will need to set up a default docroot property, and tell it about a pre-start script we need.</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> &gt; jobs/staticsite/spec
+---
+name: staticsite
+
+templates:
+  pre-start.sh: bin/pre-start
+
+packages:
+  - staticsite
+
+properties:
+  docroot:
+    description: Nginx docroot
+    default: /var/vcap/store/nginx/www/document_root
+EOF
+</pre></div>
+
+
+<p>We aren't going to use any services in this release or job, so leave the monit file blank.</p>
+<p>But we do need to tell BOSH how to set up our site on the server, for this we need a pre-start script (which has already been defined in the spec file)</p>
+<p>This contains some embedded ruby in it, which BOSH knows how to interpret.</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; <span class="s2">&quot;EOF&quot;</span> &gt; jobs/staticsite/templates/pre-start.sh
+<span class="c1">#!/bin/bash</span>
+<span class="nb">echo</span> <span class="s2">&quot;Create the docroot base directory&quot;</span>
+mkdir -p <span class="k">$(</span>dirname &lt;%<span class="o">=</span> p<span class="o">(</span><span class="s1">&#39;docroot&#39;</span><span class="k">)</span> %&gt;<span class="o">)</span>
+<span class="nb">echo</span> <span class="s2">&quot;If it our docroot already exists within it, delete it&quot;</span>
+<span class="k">if</span> <span class="o">[[</span> -d <span class="s2">&quot;&lt;%= p(&#39;docroot&#39;) %&gt;&quot;</span> <span class="o">]]</span>
+<span class="k">then</span>
+  rm -rf &lt;%<span class="o">=</span> p<span class="o">(</span><span class="s1">&#39;docroot&#39;</span><span class="o">)</span> %&gt;
+<span class="k">fi</span>
+<span class="nb">echo</span> <span class="s2">&quot;Copy our new docroot into the base directory&quot;</span>
+cp -a /var/vcap/packages/staticsite &lt;%<span class="o">=</span> p<span class="o">(</span><span class="s1">&#39;docroot&#39;</span><span class="o">)</span> %&gt;
+<span class="nb">echo</span> <span class="s2">&quot;Make sure vcap owns it&quot;</span>
+chown -R vcap:vcap &lt;%<span class="o">=</span> p<span class="o">(</span><span class="s1">&#39;docroot&#39;</span><span class="o">)</span> %&gt;
+EOF
+</pre></div>
+
+
+<h2 id="create_release">Create Release<a class="headerlink" href="#create_release" title="Permanent link">#</a></h2>
+<p>Great, we have the skeleton for a release done, now we need to create a release archive in preparation for uploading it to our director.</p>
+<p>This will create a release archive in <code>/tmp/static-site.tgz</code>.</p>
+<div class="codehilite"><pre><span></span>bosh create-release --force --tarball<span class="o">=</span>/tmp/static-site.tgz
+</pre></div>
+
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>A release archive contains EVERYTHING needed to build the release, it will contain all sourcecode for your packages and scripts. This is part of the modern release engineering principles.</p>
+</div>
+<p>Now upload the release to the director</p>
+<div class="codehilite"><pre><span></span>bosh upload-release /tmp/static-site.tgz
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../director/" title="Build BOSH Director" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Build BOSH Director
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../deploy/" title="Deploy into VirtualBox" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deploy into VirtualBox
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
