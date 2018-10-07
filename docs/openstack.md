@@ -26,6 +26,7 @@ ssh -nNt -p 2222 -L 7002:192.168.209.7:8080 ubuntu@localhost #jumpbox->director-
 * [Turbulence Dashboard](https://localhost:7002/)
 
 ### Jumpbox
+If using the created release, cp file to openstack jumpbox, otherwise use release from the the github repo [here](https://github.com/shreddedbacon/staticsite-boshrelease/releases/download/v1.0.0/staticsite-boshrelease-v1.0.0.tgz)
 ```
 scp -p 2222 /tmp/static-site.tgz ubuntu@localhost:/tmp/static-site.tgz
 ssh -p ubuntu@localhost
@@ -248,6 +249,8 @@ bosh upload-release https://github.com/shreddedbacon/nginx-boshrelease/releases/
 ```
 ```
 bosh upload-release /tmp/static-site.tgz
+# OR
+bosh upload-release https://github.com/shreddedbacon/staticsite-boshrelease/releases/download/v1.0.0/staticsite-boshrelease-v1.0.0.tgz
 ```
 And finally deploy it
 ```
