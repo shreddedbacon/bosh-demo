@@ -102,7 +102,7 @@ nginx_config: |
 EOF
 ```
 ## Operations Files
-We want to creat some operations that override the behaviour of our original default deployment.
+We want to create some operations that override the behaviour/requirements of our original default deployment.
 ```
 cat << "EOF" > demo/ops-instances.yml
 ---
@@ -120,6 +120,26 @@ EOF
 
 !!! info
     Our operations are only changing the vm_type and the number of instances we want to deploy, and which network they will live in. The vm_type `lbmicro` is defined in the Cloud Configuration.
+
+Also for demoing how easy it is to upgrade the underlying OS, we have an op file we can modify to do that (one option is commented out for now to show in demo)
+```
+cat << "EOF" > demo/ops-instances.yml
+---
+- type: replace
+  path: /stemcells
+  value:
+    - alias: default
+      os: ubuntu-xenial
+      version: 97.17
+
+#- type: replace
+#  path: /stemcells
+#  value:
+#    - alias: default
+#      os: ubuntu-trusty
+#      version: 3586.43
+EOF
+```
 
 ## Cloud Configuration
 ```
@@ -256,10 +276,15 @@ bosh upload-release https://github.com/shreddedbacon/staticsite-boshrelease/rele
 ```
 And finally deploy it
 ```
-# no LB
+# no LB, only accessible on private IP of the instances built
 bosh -d static-web d ../demo/deployment.yml -l ../demo/variables.yml
 ```
 ```
-# with LB
+# with LB, accessible on the LB VIP
 bosh -d static-web d ../demo/deployment.yml -o ../demo/ops-instances.yml -l ../demo/variables.yml
+```
+
+And to show stemcell changes
+```
+bosh -d static-web d ../demo/deployment.yml -o ../demo/ops-instances.yml -o ../demo/ops-stemcell.yml -l ../demo/variables.yml
 ```
