@@ -599,7 +599,7 @@ EOF
 
 
 <h3 id="operations_files">Operations Files<a class="headerlink" href="#operations_files" title="Permanent link">#</a></h3>
-<p>We want to creat some operations that override the behaviour of our original default deployment.</p>
+<p>We want to create some operations that override the behaviour/requirements of our original default deployment.</p>
 <div class="codehilite"><pre><span></span>cat &lt;&lt; &quot;EOF&quot; &gt; demo/ops-instances.yml
 ---
 - type: replace
@@ -619,6 +619,26 @@ EOF
 <p class="admonition-title">Info</p>
 <p>Our operations are only changing the vm_type and the number of instances we want to deploy, and which network they will live in. The vm_type <code>lbmicro</code> is defined in the Cloud Configuration.</p>
 </div>
+<p>Also for demoing how easy it is to upgrade the underlying OS, we have an op file we can modify to do that (one option is commented out for now to show in demo)</p>
+<div class="codehilite"><pre><span></span>cat &lt;&lt; &quot;EOF&quot; &gt; demo/ops-instances.yml
+---
+- type: replace
+  path: /stemcells
+  value:
+    - alias: default
+      os: ubuntu-xenial
+      version: 97.17
+
+#- type: replace
+#  path: /stemcells
+#  value:
+#    - alias: default
+#      os: ubuntu-trusty
+#      version: 3586.43
+EOF
+</pre></div>
+
+
 <h3 id="cloud_configuration">Cloud Configuration<a class="headerlink" href="#cloud_configuration" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span>cat &lt;&lt; &quot;EOF&quot; &gt; demo/cloud-config.yml
 ---
@@ -759,13 +779,18 @@ In the case of <code>lbmicro</code> we are telling it that the instance_type to 
 
 
 <p>And finally deploy it</p>
-<div class="codehilite"><pre><span></span># no LB
+<div class="codehilite"><pre><span></span># no LB, only accessible on private IP of the instances built
 bosh -d static-web d ../demo/deployment.yml -l ../demo/variables.yml
 </pre></div>
 
 
-<div class="codehilite"><pre><span></span># with LB
+<div class="codehilite"><pre><span></span># with LB, accessible on the LB VIP
 bosh -d static-web d ../demo/deployment.yml -o ../demo/ops-instances.yml -l ../demo/variables.yml
+</pre></div>
+
+
+<p>And to show stemcell changes</p>
+<div class="codehilite"><pre><span></span>bosh -d static-web d ../demo/deployment.yml -o ../demo/ops-instances.yml -o ../demo/ops-stemcell.yml -l ../demo/variables.yml
 </pre></div>
                 
                   
