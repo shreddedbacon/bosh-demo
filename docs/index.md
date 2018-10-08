@@ -27,3 +27,5 @@ Clone it into the BUCC directory, so we can retain the BUCC/BOSH environment tha
 * [Ultimate Guide to BOSH](https://ultimateguidetobosh.com/)
 * [BOSH, UAA, CredHub, ConcourseCI](https://github.com/starkandwayne/bucc)
 * [Staticsite BOSH Release](https://github.com/shreddedbacon/staticsite-boshrelease)
+* [Openstack Ansible Playbooks for Demo](https://github.com/shreddedbacon/demo-openstack-ansible)
+* [BOSH Demo (this page)](https://github.com/shreddedbacon/bosh-demo)
