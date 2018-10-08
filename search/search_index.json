@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Prerequisites\n#\n\n\nYou need a few things installed\n\n\n\n\ndirenv\n\n\nBOSH additional dependencies\n\n\n\n\nUsing BUCC (BOSH, UAA, CredHub, and ConcourseCI)\n#\n\n\nFor this intro, we will use \nBUCC\n to set up a director easily.\n\n\nWe won't be using UAA, CredHub, or ConcourseCI in this introduction though.\n\n\nClone the BUCC repository, and allow direnv to run in here\n\n\ngit clone https://github.com/starkandwayne/bucc.git \n \ncd\n bucc/\ndirenv allow\n\n\n\n\n\nReference Material\n#\n\n\n\n\nBOSH Terminology\n\n\nBOSH Guides\n\n\nUltimate Guide to BOSH\n\n\nBOSH, UAA, CredHub, ConcourseCI\n\n\nStaticsite BOSH Release", 
+            "text": "Prerequisites\n#\n\n\nYou need a few things installed\n\n\n\n\ndirenv\n\n\nBOSH additional dependencies\n\n\n\n\nUsing BUCC (BOSH, UAA, CredHub, and ConcourseCI)\n#\n\n\nFor this intro, we will use \nBUCC\n to set up a director easily.\n\n\nWe won't be using UAA, CredHub, or ConcourseCI in this introduction though.\n\n\nClone the BUCC repository, and allow direnv to run in here\n\n\ngit clone https://github.com/starkandwayne/bucc.git \n \ncd\n bucc/\ndirenv allow\n\n\n\n\n\nWe also need the staticsite BOSH release for the demo\n\n\ngit clone https://github.com/shreddedbacon/staticsite-boshrelease.git\n\n\n\n\n\nClone it into the BUCC directory, so we can retain the BUCC/BOSH environment that is already configured\n\n\nReference Material\n#\n\n\n\n\nBOSH Terminology\n\n\nBOSH Guides\n\n\nUltimate Guide to BOSH\n\n\nBOSH, UAA, CredHub, ConcourseCI\n\n\nStaticsite BOSH Release", 
             "title": "Getting Started"
         }, 
         {
@@ -12,7 +12,7 @@
         }, 
         {
             "location": "/#using_bucc_bosh_uaa_credhub_and_concourseci", 
-            "text": "For this intro, we will use  BUCC  to set up a director easily.  We won't be using UAA, CredHub, or ConcourseCI in this introduction though.  Clone the BUCC repository, and allow direnv to run in here  git clone https://github.com/starkandwayne/bucc.git    cd  bucc/\ndirenv allow", 
+            "text": "For this intro, we will use  BUCC  to set up a director easily.  We won't be using UAA, CredHub, or ConcourseCI in this introduction though.  Clone the BUCC repository, and allow direnv to run in here  git clone https://github.com/starkandwayne/bucc.git    cd  bucc/\ndirenv allow  We also need the staticsite BOSH release for the demo  git clone https://github.com/shreddedbacon/staticsite-boshrelease.git  Clone it into the BUCC directory, so we can retain the BUCC/BOSH environment that is already configured", 
             "title": "Using BUCC (BOSH, UAA, CredHub, and ConcourseCI)"
         }, 
         {
