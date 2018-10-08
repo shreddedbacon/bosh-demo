@@ -15,6 +15,12 @@ git clone https://github.com/starkandwayne/bucc.git && cd bucc/
 direnv allow
 ```
 
+We also need the staticsite BOSH release for the demo
+```bash
+git clone https://github.com/shreddedbacon/staticsite-boshrelease.git
+```
+Clone it into the BUCC directory, so we can retain the BUCC/BOSH environment that is already configured
+
 # Reference Material
 * [BOSH Terminology](https://bosh.io/docs/terminology/)
 * [BOSH Guides](https://bosh.io/docs/update-cloud-config/)
