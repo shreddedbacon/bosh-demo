@@ -123,7 +123,7 @@ EOF
 
 Also for demoing how easy it is to upgrade the underlying OS, we have an op file we can modify to do that (one option is commented out for now to show in demo)
 ```
-cat << "EOF" > demo/ops-instances.yml
+cat << "EOF" > demo/ops-stemcell.yml
 ---
 - type: replace
   path: /stemcells
